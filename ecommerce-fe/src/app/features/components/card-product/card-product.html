@@ -1,0 +1,35 @@
+<p-card class="w-full max-w-80">
+  <ng-template #header>
+    <img alt="Prodotto" class="w-full" [src]="product()?.image"/>
+  </ng-template>
+  <ng-template #title> {{ product()?.name }}</ng-template>
+  <p>
+    {{ product()?.description }}
+  </p>
+  <ng-template #footer>
+    <div class="flex start">
+      <p>
+        {{ product()?.price | number:'1.2-2' }}€
+      </p>
+    </div>
+    <div class="grid grid-cols gap-4 flex items-end">
+      <div class="col-start-1 col-end-3">
+        <p-inputnumber [(ngModel)]="quantityToAddToCart" [showButtons]="true" buttonLayout="horizontal"
+                       spinnerMode="vertical" inputId="vertical" [inputStyle]="{ width: '3rem' }" size="small" [min]="0"
+                       [max]="product()?.quantity">
+          <ng-template #incrementbuttonicon>
+            <span class="pi pi-plus"></span>
+          </ng-template>
+          <ng-template #decrementbuttonicon>
+            <span class="pi pi-minus"></span>
+          </ng-template>
+        </p-inputnumber>
+      </div>
+      <div class="col-span-2 col-end-7">
+        <p-toast position="bottom-center" key="bc"/>
+        <p-button icon="pi pi-cart-plus" [disabled]="quantityToAddToCart() <= 0" [rounded]="true" [text]="true"
+                  [raised]="true" severity="success" pRipple (onClick)="addToCart()"></p-button>
+      </div>
+    </div>
+  </ng-template>
+</p-card>

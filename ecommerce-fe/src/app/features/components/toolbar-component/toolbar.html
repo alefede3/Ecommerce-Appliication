@@ -1,0 +1,43 @@
+<div class="mx-5 mt-3">
+  <p-toolbar>
+    <ng-template #start>
+      <p-drawer #drawerRef [(visible)]="showSidebar" [position]="'left'" [modal]="true">
+        <ul class="p-menu-list">
+          @for (item of sideBarMenu; track item) {
+            <li>
+              <a (click)="router.navigate(item.routerLink); showSidebar = false" class="flex items-center gap-2">
+                <i class="{{item.icon}}"></i>
+                <span>{{ item.label }}</span>
+              </a>
+            </li>
+          }
+        </ul>
+      </p-drawer>
+      <p-button (click)="showSidebar = true" icon="pi pi-bars" [rounded]="true" [text]="true" severity="success"/>
+    </ng-template>
+
+    <ng-template #center>
+      <div class="flex items-center">
+        <img src="/logo_relatech_300x200_trasparente.png" alt="logoRelatech" style="width: 70px; height: 50px;">
+      </div>
+    </ng-template>
+
+    <ng-template #end>
+      <div class="flex items-center mr-1">
+        <p-overlaybadge [value]="cartElementsLength()" severity="success">
+          <p-button icon="pi pi-shopping-cart" [outlined]="true" [rounded]="true" severity="success"
+                    (onClick)="goToCartList()"/>
+        </p-overlaybadge>
+      </div>
+      <div class="ml-5">
+        <p-button icon="pi pi-user" [outlined]="true" [rounded]="true" (onClick)="menu.toggle($event)"/>
+        <p-tieredmenu #menu [model]="logoutMenu" [popup]="true" (click)="logout()"></p-tieredmenu>
+      </div>
+    </ng-template>
+  </p-toolbar>
+
+  <div class="card flex justify-start">
+    <p-breadcrumb [home]="home" [model]="items()"/>
+  </div>
+</div>
+

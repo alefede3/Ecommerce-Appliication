@@ -1,0 +1,5 @@
+<div class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-4 justify-items-center">
+  @for (product of productsList(); track product.idproduct) {
+    <app-card-product [product]="product"></app-card-product>
+  }
+</div>

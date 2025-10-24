@@ -1,0 +1,52 @@
+<div class="p-5">
+  <span class="text-xl">My orders</span>
+  @for (order of orderHistory(); track order.idPurchasedHistory) {
+    <p-card class="my-7">
+      <ng-template #header>
+          <div class="flex items-center justify-between p-4 w-full bg-stone-100">
+            <div>
+              <div class="text-l">
+                <span class="italic">Number</span>
+              </div>
+              <div class="font-bold">
+                {{order.idPurchasedHistory}}
+              </div>
+            </div>
+            <p-divider layout="vertical" type="solid" style="height: 70px"></p-divider>
+            <div>
+              <span class="italic">Order Date</span>
+              <div class="font-bold">
+                {{order.orderDate | date}}
+              </div>
+            </div>
+            <p-divider layout="vertical" type="solid" style="height: 70px"></p-divider>
+            <div class="text-l">
+              <span class="italic">Amount</span>
+              <div class="flex justify-end font-bold">
+                {{order.total | number:'1.2-2'}}€
+              </div>
+            </div>
+          </div>
+      </ng-template>
+      @for (product of order.orderedProducts; track product.idProduct) {
+        <div class="flex flex-cols my-5 gap-3">
+          <div>
+            <img alt="Prodotto" [src]="product.product.image"/>
+          </div>
+          <div class="flex w-full flex-col justify-between my-4 ml-5">
+            <div>
+              <p class="font-bold">{{product.product.name}}</p>
+              <p>{{product.product.description}}</p>
+            </div>
+            <div class="font-medium">
+              Quantity: {{product.quantityProduct}}
+            </div>
+          </div>
+        </div>
+        <p-divider layout="horizontal"></p-divider>
+      }
+
+    </p-card>
+  }
+
+</div>

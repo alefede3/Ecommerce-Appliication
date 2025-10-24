@@ -1,0 +1,38 @@
+<p-card class="mt-5">
+  @if (!checkoutCard()) {
+    <div class="flex justify-end">
+      <p-button icon="pi pi-times" [rounded]="true" [text]="true" severity="danger"
+                (onClick)="removeFromCart(cartProduct()?.idproduct!)"></p-button>
+    </div>
+  }
+
+  <div class="flex flex-col md:flex-row gap-8">
+    <div>
+      <img alt="Prodotto" [src]="cartProduct()?.image"/>
+    </div>
+    <div class="flex w-full flex-col justify-between">
+      <div>
+        <p class="font-bold">{{ cartProduct()?.name }}</p>
+        <p>{{ cartProduct()?.description }}</p>
+      </div>
+      <div>
+        <p-inputnumber [(ngModel)]="selectedQuantity" (ngModelChange)="onSelectedQuantityChange($event)"
+                       [showButtons]="true" [disabled]="checkoutCard()" buttonLayout="horizontal" inputId="vertical"
+                       [inputStyle]="{ width: '3rem' }" size="small" [min]="0" [max]="cartProduct()?.quantity">
+          <ng-template #incrementbuttonicon>
+            <span class="pi pi-plus"></span>
+          </ng-template>
+          <ng-template #decrementbuttonicon>
+            <span class="pi pi-minus"></span>
+          </ng-template>
+        </p-inputnumber>
+      </div>
+    </div>
+    <div class="flex flex-col justify-end">
+      <div class="flex justify-start">
+        <p class="font-semibold">{{ cartProduct()?.price | number:'1.2-2' }}€</p>
+      </div>
+    </div>
+  </div>
+</p-card>
+

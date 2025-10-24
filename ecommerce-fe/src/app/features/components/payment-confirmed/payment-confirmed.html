@@ -1,0 +1,63 @@
+<div class="grid grid-cols-3">
+  <div></div>
+
+  <div class="flex flex-col gap-5 items-center">
+    <div>
+      <i class="pi pi-check-circle" style="font-size: 3.5rem"></i>
+    </div>
+    <div class="text-4xl font-semibold">
+      Payment successful!
+    </div>
+    <div class="font-medium w-full">
+      Detail
+    </div>
+    <div class="w-full">
+      <p-card class="flex-col">
+        <div class="flex justify-between">
+          <div class="font-semibold">
+            Name
+          </div>
+          <div>
+            {{ detailFormValues().name }}
+          </div>
+        </div>
+        <p-divider></p-divider>
+        <div class="flex justify-between">
+          <div class="font-semibold">
+            Last name
+          </div>
+          <div>
+            {{ detailFormValues().lastName }}
+          </div>
+        </div>
+        <p-divider></p-divider>
+        <div class="flex justify-between">
+          <div class="font-semibold">
+            Email
+          </div>
+          <div>
+            {{ detailFormValues().email }}
+          </div>
+        </div>
+        <p-divider></p-divider>
+        <div class="flex justify-between">
+          <div class="font-semibold">
+            Total
+          </div>
+          <div>
+            {{cartService.totalSaved() | number:'1.2-2'}}€
+          </div>
+        </div>
+      </p-card>
+    </div>
+    <div>
+      <p-button label="Continue shopping" [rounded]="true" severity="success" (onClick)="navigateToHome()"/>
+    </div>
+  </div>
+
+  <div></div>
+</div>
+
+
+
+

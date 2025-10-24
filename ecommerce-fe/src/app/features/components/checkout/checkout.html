@@ -1,0 +1,307 @@
+<form [formGroup]="checkOutForm" class="p-2">
+  <p-card>
+    <div>
+      <p class="text-2xl font-bold">Checkout</p>
+    </div>
+    <div class="grid grid-cols-1 h-full mt-4 gap-30 md:grid-cols-2">
+      <div class="grid grid-cols-2 gap-5">
+        <div class="col-span-2">
+          <p class="font-medium">Shipping</p>
+        </div>
+        <div>
+          <p-card>
+            <div class="flex flex-row gap-3 items-center">
+              <p-radioButton formControlName="shippingMethod" value="delivery"/>
+              <i class="pi pi-truck"></i>
+              <p>Delivery</p>
+            </div>
+          </p-card>
+        </div>
+
+        <div>
+          <p-card>
+            <div class="flex flex-row gap-3 items-center">
+              <p-radioButton formControlName="shippingMethod" value="pickup"/>
+              <i class="pi pi-box"></i>
+              <p>Pick up</p>
+            </div>
+          </p-card>
+        </div>
+
+        <div>
+          <p-inputgroup>
+            <p-inputgroup-addon>
+              <i class="pi pi-phone"></i>
+            </p-inputgroup-addon>
+            <input pInputText formControlName="phoneNumber" type="tel" placeholder="Phone Number" class="w-full" minlength="10" maxlength="13">
+          </p-inputgroup>
+          @if (checkOutForm.controls.phoneNumber.touched) {
+            @if (checkOutForm.controls.phoneNumber.hasError('pattern')) {
+              <div class="text-red-600 text-sm">
+                Phone number must have only numbers (optional (+39)).
+              </div>
+            } @else if (checkOutForm.controls.phoneNumber.invalid) {
+              <div class="text-red-600 text-sm">
+                Phone number must be 10 digits long.
+              </div>
+            }
+          }
+        </div>
+
+        <div>
+          <p-inputgroup>
+            <p-inputgroup-addon>
+              <i class="pi pi-envelope"></i>
+            </p-inputgroup-addon>
+            <input pInputText formControlName="email" type="email" placeholder="Email" class="w-full"/>
+          </p-inputgroup>
+          @if (checkOutForm.get('email')?.invalid && checkOutForm.get('email')?.touched) {
+            <div class="text-red-600 text-sm">
+              Wrong Email format.
+            </div>
+          }
+        </div>
+
+        <div>
+          <p-inputgroup>
+            <p-inputgroup-addon>
+              <i class="pi pi-user"></i>
+            </p-inputgroup-addon>
+            <input pInputText formControlName="name" type="text" placeholder="Name" class="w-full"/>
+          </p-inputgroup>
+          @if (checkOutForm.controls.name.touched) {
+            @if (checkOutForm.controls.name.hasError('pattern')) {
+              <div class="text-red-600 text-sm">
+                Name must have only letters.
+              </div>
+            } @else if (checkOutForm.controls.name.invalid) {
+              <div class="text-red-600 text-sm">
+                Name is missing.
+              </div>
+            }
+          }
+        </div>
+
+        <div>
+          <p-inputgroup>
+            <p-inputgroup-addon>
+              <i class="pi pi-user"></i>
+            </p-inputgroup-addon>
+            <input pInputText formControlName="lastName" type="text" placeholder="Last name" class="w-full"/>
+          </p-inputgroup>
+          @if (checkOutForm.controls.lastName.touched) {
+            @if (checkOutForm.controls.lastName.hasError('pattern')) {
+              <div class="text-red-600 text-sm">
+                Last name must have only letters.
+              </div>
+            } @else if (checkOutForm.controls.lastName.invalid) {
+              <div class="text-red-600 text-sm">
+                Last name is missing.
+              </div>
+            }
+          }
+        </div>
+
+        <div class="col-span-2">
+          <p-inputgroup>
+            <p-inputgroup-addon>
+              <i class="pi pi-home"></i>
+            </p-inputgroup-addon>
+            <input pInputText formControlName="address" type="text" placeholder="Address" class="w-full"/>
+          </p-inputgroup>
+          @if (checkOutForm.controls.address.touched) {
+            @if (checkOutForm.controls.address.hasError('pattern')) {
+              <div class="text-red-600 text-sm">
+                Invalid address format.
+              </div>
+            } @else if (checkOutForm.controls.address.invalid) {
+              <div class="text-red-600 text-sm">
+                Address is missing.
+              </div>
+            }
+          }
+        </div>
+
+        <div class="col-span-2">
+          <p-inputgroup>
+            <p-inputgroup-addon>
+              <i class="pi pi-building"></i>
+            </p-inputgroup-addon>
+            <input pInputText formControlName="apartment" type="text" placeholder="Apartment, suite, etc"
+                   class="w-full"/>
+          </p-inputgroup>
+          @if (checkOutForm.controls.apartment.touched && checkOutForm.controls.apartment.invalid) {
+            <div class="text-red-600 text-sm">
+              Apartment is missing.
+            </div>
+          }
+        </div>
+
+        <div>
+          <p-inputgroup>
+            <p-inputgroup-addon>
+              <i class="pi pi-map-marker"></i>
+            </p-inputgroup-addon>
+            <input pInputText formControlName="postalCode" type="text" placeholder="Postal Code" class="w-full"
+                   maxlength="5" minlength="5"/>
+          </p-inputgroup>
+          @if (checkOutForm.controls.postalCode.touched) {
+            @if (checkOutForm.controls.postalCode.hasError('pattern')) {
+              <div class="text-red-600 text-sm">
+                Postal code must have only numbers and must be 5 digits long.
+              </div>
+            } @else if (checkOutForm.controls.postalCode.invalid) {
+              <div class="text-red-600 text-sm">
+                Postal code must be 5 digits long.
+              </div>
+            }
+          }
+        </div>
+
+        <div>
+          <p-inputgroup>
+            <p-inputgroup-addon>
+              <i class="pi pi-globe"></i>
+            </p-inputgroup-addon>
+            <input pInputText formControlName="city" type="text" placeholder="City" class="w-full"/>
+          </p-inputgroup>
+          @if (checkOutForm.controls.city.touched) {
+            @if (checkOutForm.controls.city.hasError('pattern')) {
+              <div class="text-red-600 text-sm">
+                City must have only letters.
+              </div>
+            } @else if (checkOutForm.controls.city.invalid) {
+              <div class="text-red-600 text-sm">
+                City is missing.
+              </div>
+            }
+          }
+        </div>
+      </div>
+
+      <div class="flex justify-center justify-items-center flex-col gap-5">
+        <p-card>
+          <div class="overflow-y-auto md:flex-rows" style="height: 350px">
+            <app-cart [viewOnlyCardCart]="true" [checkoutCard]="true"></app-cart>
+          </div>
+        </p-card>
+        <div class="flex justify-between text-2xl font-bold underline">
+          <div>
+            Total:
+          </div>
+          <div>
+            {{ cartService.totalAmount() | number:'1.2-2' }}€
+          </div>
+        </div>
+        <div>
+          <p-button [disabled]="isButtonDisabled()" label="Payment" variant="outlined" severity="success"
+                    styleClass="w-full" (onClick)="showPaymentDialog()">
+            <i class="pi pi-wallet"></i>
+          </p-button>
+        </div>
+      </div>
+    </div>
+  </p-card>
+</form>
+
+<form [formGroup]="paymentForm" class="p-4">
+  <p-dialog [(visible)]="paymentDialog" [modal]="true" [style]="{ width: '25rem' }">
+    <ng-template #header>
+      <div class="inline-flex items-center justify-center gap-2">
+        <span class="font-bold whitespace-nowrap text-xl">PAYMENT</span>
+      </div>
+    </ng-template>
+    <span class="text-surface-500 dark:text-surface-400 block mb-8">Insert your data payment</span>
+    <div class="grid grid-cols-2 gap-5">
+
+      <div class="col-span-2">
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-user"></i>
+          </p-inputgroup-addon>
+          <input pInputText formControlName="nameOnCard" type="text" placeholder="Name on card" class="w-full"/>
+        </p-inputgroup>
+        @if (paymentForm.controls.nameOnCard.touched) {
+          @if (paymentForm.controls.nameOnCard.hasError('pattern')) {
+            <div class="text-red-600 text-sm">
+              Name on Card must have only letters.
+            </div>
+          } @else if (paymentForm.controls.nameOnCard.invalid) {
+            <div class="text-red-600 text-sm">
+              Name on Card is missing.
+            </div>
+          }
+        }
+      </div>
+
+      <div class="col-span-2">
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-credit-card"></i>
+          </p-inputgroup-addon>
+          <input pInputText formControlName="cardNumber" type="text" placeholder="Card Number" class="w-full"
+                 minlength="13" maxlength="19"/>
+        </p-inputgroup>
+        @if (paymentForm.controls.cardNumber.touched) {
+          @if (paymentForm.controls.cardNumber.hasError('pattern')) {
+            <div class="text-red-600 text-sm">
+              Card Number must have only numbers.
+            </div>
+          } @else if (paymentForm.controls.cardNumber.invalid) {
+            <div class="text-red-600 text-sm">
+              Card Number is missing.
+            </div>
+          }
+        }
+      </div>
+
+      <div>
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-calendar"></i>
+          </p-inputgroup-addon>
+          <input pInputText type="text" formControlName="expiration" placeholder="MM/YYYY" maxlength="7"/>
+        </p-inputgroup>
+        @if (paymentForm.controls.expiration.touched) {
+          @if (paymentForm.controls.expiration.hasError('pattern')) {
+            <div class="text-red-600 text-sm">
+              Format must be MM/YYYY.
+            </div>
+          } @else if (paymentForm.controls.expiration.invalid) {
+            <div class="text-red-600 text-sm">
+              Expiration is missing.
+            </div>
+          }
+        }
+      </div>
+
+      <div>
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-lock"></i>
+          </p-inputgroup-addon>
+          <input pInputText formControlName="cvc" type="text" id="cvc" placeholder="CVC" class="w-full" maxlength="3"
+                 minlength="3"/>
+        </p-inputgroup>
+        @if (paymentForm.controls.cvc.touched) {
+          @if (paymentForm.controls.cvc.hasError('pattern')) {
+            <div class="text-red-600 text-sm">
+              CVC must have only numbers.
+            </div>
+          } @else if (paymentForm.controls.cvc.invalid) {
+            <div class="text-red-600 text-sm">
+              CVC must be 3 digits long.
+            </div>
+          }
+        }
+      </div>
+
+    </div>
+    <ng-template #footer>
+      <div class="w-full">
+        <p-button [disabled]="!paymentForm.valid" label="Pay Now" styleClass="w-full" [text]="true" [raised]="true"
+                  severity="success" (onClick)="onPayment()"/>
+      </div>
+    </ng-template>
+  </p-dialog>
+</form>

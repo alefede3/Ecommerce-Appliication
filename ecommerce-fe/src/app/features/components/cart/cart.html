@@ -1,0 +1,43 @@
+@if (cartProducts().length === 0) {
+  <div class="h-full w-full flex flex-col items-center justify-center">
+    <div class="text-2xl">
+      The cart is empty
+    </div>
+    <div>
+      <p-button label="Add products" variant="text" severity="success" (onClick)="navigateToHome()"/>
+    </div>
+  </div>
+} @else {
+  <div class="p-4">
+    @if (!viewOnlyCardCart()) {
+      <div class="flex justify-between">
+        <div>
+          <p class="italic">Order summary:</p>
+        </div>
+        <div>
+          <p><b>Total:</b> {{ cartService.totalAmount() | number:'1.2-2' }}€ </p>
+        </div>
+      </div>
+    }
+    <div>
+      @for (cartProduct of cartService.cart(); track cartProduct.idproduct) {
+        <app-card-cart [cartProduct]="cartProduct" [checkoutCard]="checkoutCard()"></app-card-cart>
+      }
+    </div>
+  </div>
+
+  @if (!viewOnlyCardCart()) {
+    <p-divider/>
+
+    <div class="flex flex-col gap-4 p-4">
+      <div class="font-bold text-xl flex justify-end">
+        <p>Total: {{ cartService.totalAmount() | number:'1.2-2' }}€ </p>
+      </div>
+      <div class="flex justify-end">
+        <p-button label="Checkout" severity="success" (onClick)="navigateToCheckout()"/>
+      </div>
+    </div>
+  }
+}
+
+
