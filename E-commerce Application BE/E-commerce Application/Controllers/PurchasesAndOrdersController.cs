@@ -19,7 +19,6 @@ public class PurchasesAndOrdersController : Controller
         foreach (var product in products)
         {
             Console.WriteLine(product + " nel controller");
-
         }
 
         _purchasesAndOrders.SaveProductsOrdered(products);
@@ -30,5 +29,4 @@ public class PurchasesAndOrdersController : Controller
     {
         return _purchasesAndOrders.GetOrders();
     }
-    
 }

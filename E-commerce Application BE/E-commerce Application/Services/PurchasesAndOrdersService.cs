@@ -21,6 +21,4 @@ public class PurchasesAndOrdersService
     {
         return _purchasesAndOrdersRepository.GetOrders();
     }
-    
-    
 }

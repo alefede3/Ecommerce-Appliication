@@ -6,6 +6,6 @@ public interface IProductRepository
 {
     IEnumerable<Product> GetAllProducts();
     Product GetProductById(int id);
-    
+
     void UpdateProductQuantity(IEnumerable<Product> products);
 }

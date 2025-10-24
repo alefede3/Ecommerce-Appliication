@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using WebApplication1.Data;
+﻿using WebApplication1.Data;
 using WebApplication1.Models;
 
 namespace WebApplication1.Repositories;
@@ -8,7 +6,7 @@ namespace WebApplication1.Repositories;
 public class ProductRepository : IProductRepository
 {
     private readonly ApplicationDbContext _context;
-    
+
     public ProductRepository(ApplicationDbContext context)
     {
         _context = context;
@@ -20,7 +18,7 @@ public class ProductRepository : IProductRepository
     }
 
     public Product GetProductById(int id)
-    { 
+    {
         return _context.product.Find(id);
     }
 

@@ -7,9 +7,8 @@ namespace WebApplication1.Controllers;
 [ApiController]
 public class ProductController : Controller
 {
-    
     private readonly ProductService _productService;
-    
+
     public ProductController(ProductService productService)
     {
         _productService = productService;
